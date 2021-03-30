@@ -1,4 +1,3 @@
-import { Meteor } from 'meteor/meteor';
 import { AgendasCollection } from '/imports/api/agendas';
 
 function insertAgenda({ dia, data }) {
