@@ -11,15 +11,15 @@ export const Contato = () => {
     <div>
       <h2>Contato</h2>
       <ul>{contato.map(
-        con => {
+        item => {
           return (
-            <li key={con._id}>
-              <img src={con.logo} /> 
-              <p>{con.endereco}</p>
-              <p>{con.localizacao}</p>
-              <p>{con.telefone}</p>
-              <p>{con.email}</p>
-              <p>{con.missao}</p>
+            <li key={item._id}>
+              <img src={item.logo} /> 
+              <p>{item.endereco}</p>
+              <p>{item.localizacao}</p>
+              <p>{item.telefone}</p>
+              <p>{item.email}</p>
+              <p>{item.missao}</p>
             </li>
           )
         }

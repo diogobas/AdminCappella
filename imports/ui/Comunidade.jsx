@@ -11,11 +11,11 @@ export const Comunidade = () => {
     <div>
       <h2>Comunidade</h2>
       <ul>{comunidades.map(
-        com => {
+        item => {
           return (
-            <li key={com._id}>
-              <p>{com.media}</p>
-              <p>{com.url}</p>
+            <li key={item._id}>
+              <p>{item.media}</p>
+              <p>{item.url}</p>
             </li>
           )
         }

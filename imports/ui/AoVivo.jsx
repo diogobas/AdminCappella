@@ -11,8 +11,8 @@ export const AoVivo = () => {
     <div>
       <h2>Ao Vivo</h2>
       <ul>{linkAovivo.map(
-        link => <li key={link._id}>
-          <a href={link.url} target="_blank">{link.url}</a>
+        item => <li key={item._id}>
+          <a href={item.url} target="_blank">{item.url}</a>
         </li>
       )}</ul>
     </div>

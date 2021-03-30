@@ -11,16 +11,16 @@ export const Contribua = () => {
     <div>
       <h2>Contribua</h2>
       <ul>{contato.map(
-        con => {
+        item => {
           return (
-            <li key={con._id}>
-              <p>{con.nomeBanco}</p>
-              <p>{con.banco}</p>
-              <p>{con.agencia}</p>
-              <p>{con.cc}</p>
-              <p>{con.operacao}</p>
-              <p>{con.igreja}</p>
-              <p>{con.cnpj}</p>
+            <li key={item._id}>
+              <p>{item.nomeBanco}</p>
+              <p>{item.banco}</p>
+              <p>{item.agencia}</p>
+              <p>{item.cc}</p>
+              <p>{item.operacao}</p>
+              <p>{item.igreja}</p>
+              <p>{item.cnpj}</p>
             </li>
           )
         }

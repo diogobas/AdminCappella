@@ -11,13 +11,13 @@ export const Missao = () => {
     <div>
       <h2>Missao</h2>
       <ul>{missao.map(
-        mis => {
+        item => {
           return (
-            <li key={mis._id}>
-              <p>{mis.nome}</p>
-              <p>{mis.missao}</p>
-              <p>{mis.contato}</p>
-              <p>{mis.backgroundColor}</p>
+            <li key={item._id}>
+              <p>{item.nome}</p>
+              <p>{item.missao}</p>
+              <p>{item.contato}</p>
+              <p>{item.backgroundColor}</p>
             </li>
           )
         }

@@ -11,12 +11,12 @@ export const Agenda = () => {
     <div>
       <h2>Agenda</h2>
       <ul>{agendas.map(
-        agenda => {
+        item => {
           return (
-            <li key={agenda._id}>
-              <p>{agenda.dia}</p>
+            <li key={item._id}>
+              <p>{item.dia}</p>
               {
-                agenda.data.map(dt => {
+                item.data.map(dt => {
                   return (
                     <ul>
                       <li>{dt.horario}</li>

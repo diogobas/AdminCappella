@@ -11,12 +11,12 @@ export const Pastoral = () => {
     <div>
       <h2>Pastoral</h2>
       <ul>{pastoral.map(
-        pas => {
+        item => {
           return (
-            <li key={pas._id}>
-              <p>{pas.titulo}</p>
-              <p>{pas.autor}</p>
-              <p>{pas.descricao}</p>
+            <li key={item._id}>
+              <p>{item.titulo}</p>
+              <p>{item.autor}</p>
+              <p>{item.descricao}</p>
             </li>
           )
         }
