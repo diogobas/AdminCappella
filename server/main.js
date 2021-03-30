@@ -11,6 +11,8 @@ import { ContribuaCollection } from '../imports/api/contribua';
 import { inserirContribua } from './contribua';
 import { MissaoCollection } from '../imports/api/missao';
 import { inserirMissao } from './missao';
+import { PastoralCollection } from '../imports/api/pastoral';
+import { inserirPastoral } from './pastoral';
 
 Meteor.startup(() => {
   if (AgendasCollection.find().count() === 0) {
@@ -30,5 +32,8 @@ Meteor.startup(() => {
   }
   if (MissaoCollection.find().count() === 0) {
     inserirMissao();
+  }
+  if (PastoralCollection.find().count() === 0) {
+    inserirPastoral();
   }
 });
