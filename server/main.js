@@ -5,6 +5,8 @@ import { inserirCalendario } from './agenda';
 import { inserirAoVivo } from './aovivo';
 import { ComunidadesCollection } from '../imports/api/comunidades';
 import { inserirComunidade } from './comunidade';
+import { ContatoCollection } from '../imports/api/contato';
+import { inserirContato } from './contato';
 
 Meteor.startup(() => {
   if (AgendasCollection.find().count() === 0) {
@@ -15,5 +17,8 @@ Meteor.startup(() => {
   }
   if (ComunidadesCollection.find().count() === 0) {
     inserirComunidade();
+  }
+  if (ContatoCollection.find().count() === 0) {
+    inserirContato();
   }
 });
