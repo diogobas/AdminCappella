@@ -6,7 +6,6 @@ function insertContato({ logo, endereco, localizacao, telefone, email, missao  }
 
 export function inserirContato() {
     insertContato({
-      // logo: require('../imports/assets/images/mosaico.png'),
       logo: '../assets/images/mosaico.png',
       endereco: 'Rua T-53, 480 Setor Bueno Goiânia/GO, CEP 74810-210',
       localizacao: 'https://goo.gl/maps/ZNohNYBc6XSaP9nf9',
