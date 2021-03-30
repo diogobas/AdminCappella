@@ -9,6 +9,8 @@ import { ContatoCollection } from '../imports/api/contato';
 import { inserirContato } from './contato';
 import { ContribuaCollection } from '../imports/api/contribua';
 import { inserirContribua } from './contribua';
+import { MissaoCollection } from '../imports/api/missao';
+import { inserirMissao } from './missao';
 
 Meteor.startup(() => {
   if (AgendasCollection.find().count() === 0) {
@@ -25,5 +27,8 @@ Meteor.startup(() => {
   }
   if (ContribuaCollection.find().count() === 0) {
     inserirContribua();
+  }
+  if (MissaoCollection.find().count() === 0) {
+    inserirMissao();
   }
 });
