@@ -3,14 +3,14 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { ContribuaCollection } from '../api/contribua';
 
 export const Contribua = () => {
-  const contato = useTracker(() => {
+  const contribua = useTracker(() => {
     return ContribuaCollection.find().fetch();
   });
 
   return (
     <div>
       <h2>Contribua</h2>
-      <ul>{contato.map(
+      <ul>{contribua.map(
         item => {
           return (
             <li key={item._id}>
