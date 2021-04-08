@@ -12,18 +12,14 @@ export const Comunidade = () => {
     <div>
       <h2>Comunidade</h2>
       <ul>{comunidades.map(
-        item => {
-          console.log(typeof item.icon);
-          return (
+        item => (
             <li key={item._id}>
-              <p>{item.media}</p>
               <p>{item.url}</p>
               {typeof item.icon !== 'string' ? (
                 <FontAwesomeIcon icon={item.icon} />
               ) : null}
             </li>
           )
-        }
       )}</ul>
     </div>
   );

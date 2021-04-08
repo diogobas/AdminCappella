@@ -1,7 +1,7 @@
 import { ContatoCollection } from '/imports/api/contato';
 
-function insertContato({ logo, endereco, localizacao, telefone, email, missao  }) {
-  ContatoCollection.insert({logo, endereco, localizacao, telefone, email, missao, createdAt: new Date()});
+function insertContato({ logo, endereco, localizacao, telefone, email, missao, pastor  }) {
+  ContatoCollection.insert({logo, endereco, localizacao, telefone, email, missao, pastor, createdAt: new Date()});
 }
 
 export function inserirContato() {
@@ -13,5 +13,6 @@ export function inserirContato() {
       email: 'ipmosaico@gmail.com',
       missao:
     'A Igreja Presbiteriana Mosaico existe para acolher pessoas e formar discípulos de Cristo através de relacionamentos saudáveis e uma pregação bíblica contemporânea no bairro Setor Bueno, na cidade de Goiânia e no mundo.',
+      pastor: 'Rev. Felipe Lobo Andrade',
     });
 }

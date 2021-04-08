@@ -17,7 +17,6 @@ export const Missao = () => {
               <p>{item.nome}</p>
               <p>{item.missao}</p>
               <p>{item.contato}</p>
-              <p>{item.backgroundColor}</p>
             </li>
           )
         }

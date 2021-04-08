@@ -20,6 +20,7 @@ export const Contato = () => {
               <p>{item.telefone}</p>
               <p>{item.email}</p>
               <p>{item.missao}</p>
+              <p>{item.pastor}</p>
             </li>
           )
         }
