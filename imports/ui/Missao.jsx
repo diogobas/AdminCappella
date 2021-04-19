@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { MissaoCollection } from '../api/missao';
+import { MissaoCollection } from '../collections/missao';
 
 export const Missao = () => {
   const missao = useTracker(() => {

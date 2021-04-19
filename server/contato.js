@@ -1,4 +1,4 @@
-import { ContatoCollection } from '/imports/api/contato';
+import { ContatoCollection } from '/imports/collections/contato';
 
 function insertContato({ logo, endereco, localizacao, telefone, email, missao, pastor  }) {
   ContatoCollection.insert({logo, endereco, localizacao, telefone, email, missao, pastor, createdAt: new Date()});

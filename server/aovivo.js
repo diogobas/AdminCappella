@@ -1,4 +1,4 @@
-import { LinkAovivo } from '/imports/api/linkAovivo';
+import { LinkAovivo } from '/imports/collections/linkAovivo';
 
 function insertAoVivo({ url }) {
   LinkAovivo.insert({url, createdAt: new Date()});

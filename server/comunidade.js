@@ -1,4 +1,4 @@
-import { ComunidadesCollection } from '../imports/api/comunidades';
+import { ComunidadesCollection } from '../imports/collections/comunidades';
 import {
   faFacebook,
   faWhatsapp,

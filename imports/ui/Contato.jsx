@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ContatoCollection } from '../api/contato';
+import { ContatoCollection } from '../collections/contato';
 
 export const Contato = () => {
   const contato = useTracker(() => {

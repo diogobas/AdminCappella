@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { LinkAovivo } from '../api/linkAovivo';
+import { LinkAovivo } from '../collections/linkAovivo';
 
 export const AoVivo = () => {
   const linkAovivo = useTracker(() => {

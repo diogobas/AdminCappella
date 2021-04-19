@@ -1,17 +1,17 @@
 import { Meteor } from 'meteor/meteor';
-import { AgendasCollection } from '/imports/api/agendas';
-import { LinkAovivo } from '../imports/api/linkAovivo';
+import { AgendasCollection } from '/imports/collections/agendas';
+import { LinkAovivo } from '../imports/collections/linkAovivo';
 import { inserirCalendario } from './agenda';
 import { inserirAoVivo } from './aovivo';
-import { ComunidadesCollection } from '../imports/api/comunidades';
+import { ComunidadesCollection } from '../imports/collections/comunidades';
 import { inserirComunidade } from './comunidade';
-import { ContatoCollection } from '../imports/api/contato';
+import { ContatoCollection } from '../imports/collections/contato';
 import { inserirContato } from './contato';
-import { ContribuaCollection } from '../imports/api/contribua';
+import { ContribuaCollection } from '../imports/collections/contribua';
 import { inserirContribua } from './contribua';
-import { MissaoCollection } from '../imports/api/missao';
+import { MissaoCollection } from '../imports/collections/missao';
 import { inserirMissao } from './missao';
-import { PastoralCollection } from '../imports/api/pastoral';
+import { PastoralCollection } from '../imports/collections/pastoral';
 import { inserirPastoral } from './pastoral';
 
 Meteor.startup(() => {

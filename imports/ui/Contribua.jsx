@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ContribuaCollection } from '../api/contribua';
+import { ContribuaCollection } from '../collections/contribua';
 
 export const Contribua = () => {
   const contribua = useTracker(() => {

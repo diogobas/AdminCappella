@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { PastoralCollection } from '../api/pastoral';
+import { PastoralCollection } from '../collections/pastoral';
 
 export const Pastoral = () => {
   const pastoral = useTracker(() => {

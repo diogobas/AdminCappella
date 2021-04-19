@@ -1,4 +1,4 @@
-import { AgendasCollection } from '/imports/api/agendas';
+import { AgendasCollection } from '/imports/collections/agendas';
 
 function insertAgenda({ dia, data }) {
   AgendasCollection.insert({dia, data, createdAt: new Date()});

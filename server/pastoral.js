@@ -1,4 +1,4 @@
-import { PastoralCollection } from '../imports/api/pastoral';
+import { PastoralCollection } from '../imports/collections/pastoral';
 
 function insertPastoral({ titulo, autor, descricao }) {
   PastoralCollection.insert({titulo, autor, descricao, createdAt: new Date()});

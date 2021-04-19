@@ -1,4 +1,4 @@
-import { ContribuaCollection } from '/imports/api/contribua';
+import { ContribuaCollection } from '/imports/collections/contribua';
 
 function insertContribua({ nomeBanco, banco, agencia, cc, operacao, igreja, cnpj  }) {
   ContribuaCollection.insert({nomeBanco, banco, agencia, cc, operacao, igreja, cnpj, createdAt: new Date()});

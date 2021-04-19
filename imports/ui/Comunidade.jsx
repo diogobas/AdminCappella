@@ -1,7 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useTracker } from 'meteor/react-meteor-data';
-import { ComunidadesCollection } from '../api/comunidades';
+import { ComunidadesCollection } from '../collections/comunidades';
 
 export const Comunidade = () => {
   const comunidades = useTracker(() => {

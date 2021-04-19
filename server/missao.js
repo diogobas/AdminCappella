@@ -1,4 +1,4 @@
-import { MissaoCollection } from '../imports/api/missao';
+import { MissaoCollection } from '../imports/collections/missao';
 
 function insertMissao({ nome, missao, contato }) {
   MissaoCollection.insert({nome, missao, contato, createdAt: new Date()});
