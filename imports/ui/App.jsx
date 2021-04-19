@@ -11,6 +11,7 @@ import { Agenda } from './Agenda';
 import { AoVivo } from './AoVivo';
 import { Comunidade } from './Comunidade';
 import { Contribua } from './Contribua';
+import { Contato } from './Contato';
 import { Missao } from './Missao';
 
 const useStyles = makeStyles(() => ({
@@ -29,6 +30,7 @@ export const App = () => {
           <Route exact path="/pastoral" component={Pastoral} />
           <Route from="/agenda" component={Agenda} />
           <Route from="/aovivo" component={AoVivo} />
+          <Route from="/contato" component={Contato} />
           <Route from="/comunidade" component={Comunidade} />
           <Route from="/contribua" component={Contribua} />
           <Route from="/missao" component={Missao} />

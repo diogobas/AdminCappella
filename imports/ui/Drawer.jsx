@@ -69,7 +69,7 @@ const Drawer = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbarProps}>
           <Typography variant="h6" noWrap>
-            Ip Mosaico
+            {history.location.pathname.slice(1).toUpperCase()}
           </Typography>
         </Toolbar>
       </AppBar>
