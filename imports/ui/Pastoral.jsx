@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useTracker } from 'meteor/react-meteor-data';
-import { PastoralCollection } from '../collections/pastoral';
+import React, { useState } from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
+import { PastoralList } from './PastoralList';
 
 const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
@@ -27,27 +27,31 @@ export const Pastoral = () => {
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [descricao, setDescricao] = useState('');
-
-  const pastoral = useTracker(() => {
-    return PastoralCollection.find().fetch();
-  });
+  const [error, setError] = useState('');
 
   const setInitialValues = () => {
-    setTitulo(pastoral[0].titulo);
-    setAutor(pastoral[0].autor);
-    setDescricao(pastoral[0].descricao);
+    setTitulo('');
+    setAutor('');
+    setDescricao('');
   }
 
-  useEffect(() => {
-    if (!titulo && pastoral.length) {
-      setInitialValues();
-    }
-  }, [pastoral])
+  const handleSubmit = e => {
+    e.preventDefault()
+    
+    Meteor.call('pastoral.insert', titulo, autor, descricao, (error) => {
+      if (error) {
+        setError('Preencha todos os campos obrigatórios!');
+      } else {
+        setError('');
+        setInitialValues();
+      }
+    });
+  }
 
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
-      <form className={classes.root} autoComplete="off" onSubmit={() => {}}>
+      <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
               <TextField
@@ -79,6 +83,7 @@ export const Pastoral = () => {
                 >
                   Cancelar
                 </Button>
+                <div className="text-danger">{error}</div>
                 <Button 
                   variant="contained"
                   size="large"
@@ -92,6 +97,7 @@ export const Pastoral = () => {
           </Grid>
         </Grid>
       </form>
+      <PastoralList />
     </main>
   );
 };
