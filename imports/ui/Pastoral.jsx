@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     '& .MuiFormControl-root': {
-        width: '100%',
-        margin: theme.spacing(1)
-    }
+      width: '100%',
+      margin: theme.spacing(1),
+    },
   },
   botao: {
-    margin: theme.spacing(0.5)
+    margin: theme.spacing(0.5),
   },
   containerBotao: {
     display: 'flex',
@@ -43,9 +43,8 @@ export const Pastoral = () => {
     return PastoralCollection.find().fetch();
   });
 
-
   const setInitialValues = () => {
-    const {_id, titulo, autor, descricao} = pastoral[0];
+    const { _id, titulo, autor, descricao } = pastoral[0];
 
     setId(_id);
     setTitulo(titulo);
@@ -54,7 +53,7 @@ export const Pastoral = () => {
     setInitialAutor(autor);
     setDescricao(descricao);
     setInitialDescricao(descricao);
-  }
+  };
 
   useEffect(() => {
     if (!titulo && pastoral.length) {
@@ -63,16 +62,20 @@ export const Pastoral = () => {
   }, [pastoral]);
 
   useEffect(() => {
-    if (titulo !== initialTitulo || autor !== initialAutor || descricao !== initialDescricao) {
+    if (
+      titulo !== initialTitulo ||
+      autor !== initialAutor ||
+      descricao !== initialDescricao
+    ) {
       return setHasChange(true);
     }
 
     setHasChange(false);
-  }, [titulo, autor, descricao])
+  }, [titulo, autor, descricao]);
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
     Meteor.call('pastoral.update', id, titulo, autor, descricao, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
@@ -81,7 +84,7 @@ export const Pastoral = () => {
         setHasChange(false);
       }
     });
-  }
+  };
 
   return (
     <main className={classes.content}>
@@ -89,48 +92,51 @@ export const Pastoral = () => {
       <form className={classes.root} autoComplete="off" onSubmit={handleSubmit}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
-              <TextField
-                variant="outlined"
-                label={"Titulo"}
-                value={titulo}
-                onChange={e => setTitulo(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                label={"Autor"}
-                value={autor}
-                onChange={e => setAutor(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                label={"Pastoral"}
-                multiline
-                value={descricao}
-                onChange={e => setDescricao(e.target.value)}
-              />
-              <Grid className={classes.containerBotao}>
-                <Button 
-                  variant="contained"
-                  size="large"
-                  color="default"
-                  classes={{ root: classes.botao}}
-                  onClick={setInitialValues}
-                  disabled={!hasChange}
-                >
-                  Cancelar
-                </Button>
-                <div className="text-danger">{error}</div>
-                <Button 
-                  variant="contained"
-                  size="large"
-                  color="primary"
-                  type="submit"
-                  classes={{ root: classes.botao}}
-                  disabled={!hasChange}
-                >
-                  Salvar
-                </Button>
-              </Grid>
+            <TextField
+              variant="outlined"
+              label={'Titulo'}
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              label={'Autor'}
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              label={'Pastoral'}
+              multiline
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+            />
+            <Grid className={classes.containerBotao}>
+              <Button
+                variant="contained"
+                size="large"
+                color="default"
+                classes={{ root: classes.botao }}
+                onClick={() => {
+                  setInitialValues();
+                  setError('');
+                }}
+                disabled={!hasChange}
+              >
+                Cancelar
+              </Button>
+              <div className="text-danger">{error}</div>
+              <Button
+                variant="contained"
+                size="large"
+                color="primary"
+                type="submit"
+                classes={{ root: classes.botao }}
+                disabled={!hasChange}
+              >
+                Salvar
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </form>

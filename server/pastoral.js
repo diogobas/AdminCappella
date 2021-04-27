@@ -1,14 +1,19 @@
 import { PastoralCollection } from '../imports/collections/pastoral';
 
 function insertPastoral({ titulo, autor, descricao }) {
-  PastoralCollection.insert({titulo, autor, descricao, createdAt: new Date()});
+  PastoralCollection.insert({
+    titulo,
+    autor,
+    descricao,
+    createdAt: new Date(),
+  });
 }
 
 export function inserirPastoral() {
-    insertPastoral({
-      titulo: 'A melhor opção de investimento',
-      autor: 'Marcos E. Fink',
-      descricao: `
+  insertPastoral({
+    titulo: 'A melhor opção de investimento',
+    autor: 'Marcos E. Fink',
+    descricao: `
       Às vezes, as pessoas me perguntam qual é a melhor opção de investimento. A minha resposta não é a que elas esperam, mas é absolutamente verdadeira e está baseada nos seguintes princípios:
     
       "O Reino dos céus é como um tesouro escondido num campo. Certo homem, tendo-o encontrado, escondeu-o de novo e, então, cheio de alegria, foi, vendeu tudo o que tinha e comprou aquele campo" Mt 13:44.
@@ -26,5 +31,5 @@ export function inserirPastoral() {
       Se a sua resposta às perguntas acima é 'sim', deixe-me perguntar: Os investimentos que você tem feito têm valor no Reino? Como está o "saldo" da sua "conta de investimentos" do Reino? Continue investindo pesado no Reino, cheio de alegria.
       
       Que o Rei do Reino te conceda oportunidades de investir no que verdadeiramente vale à pena investir.`,
-    });
+  });
 }

@@ -10,11 +10,11 @@ export const Contato = () => {
   return (
     <div>
       <h2>Contato</h2>
-      <ul>{contato.map(
-        item => {
+      <ul>
+        {contato.map((item) => {
           return (
             <li key={item._id}>
-              <img src={item.logo} /> 
+              <img src={item.logo} />
               <p>{item.endereco}</p>
               <p>{item.localizacao}</p>
               <p>{item.telefone}</p>
@@ -22,9 +22,9 @@ export const Contato = () => {
               <p>{item.missao}</p>
               <p>{item.pastor}</p>
             </li>
-          )
-        }
-      )}</ul>
+          );
+        })}
+      </ul>
     </div>
   );
 };

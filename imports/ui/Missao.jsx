@@ -10,17 +10,17 @@ export const Missao = () => {
   return (
     <div>
       <h2>Missao</h2>
-      <ul>{missao.map(
-        item => {
+      <ul>
+        {missao.map((item) => {
           return (
             <li key={item._id}>
               <p>{item.nome}</p>
               <p>{item.missao}</p>
               <p>{item.contato}</p>
             </li>
-          )
-        }
-      )}</ul>
+          );
+        })}
+      </ul>
     </div>
   );
 };

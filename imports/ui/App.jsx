@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
-import { makeStyles} from '@material-ui/core';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 import Drawer from './Drawer';
 import { Pastoral } from './Pastoral';
 import { Agenda } from './Agenda';
@@ -15,9 +11,9 @@ import { Contato } from './Contato';
 import { Missao } from './Missao';
 
 const useStyles = makeStyles(() => ({
- container: {
-    display: "flex"
-  }
+  container: {
+    display: 'flex',
+  },
 }));
 
 export const App = () => {

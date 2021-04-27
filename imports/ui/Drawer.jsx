@@ -1,6 +1,17 @@
 import React from 'react';
-import { AppBar, CssBaseline, Divider, Drawer as MUIDrawer, List, ListItem, ListItemText, makeStyles, Toolbar, Typography } from '@material-ui/core';
-import { useHistory, withRouter } from "react-router-dom";
+import {
+  AppBar,
+  CssBaseline,
+  Divider,
+  Drawer as MUIDrawer,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
+import { useHistory, withRouter } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -22,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarProps: {
     backgroundColor: 'white',
-    color: 'black'
+    color: 'black',
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -34,32 +45,32 @@ const Drawer = () => {
 
   const itemsList = [
     {
-      text: "Pastoral",
-      onClick: () => history.push("/pastoral")
+      text: 'Pastoral',
+      onClick: () => history.push('/pastoral'),
     },
     {
-      text: "Agenda",
-      onClick: () => history.push("/agenda")
+      text: 'Agenda',
+      onClick: () => history.push('/agenda'),
     },
     {
-      text: "Ao Vivo",
-      onClick: () => history.push("/aovivo")
+      text: 'Ao Vivo',
+      onClick: () => history.push('/aovivo'),
     },
     {
-      text: "Comunidade",
-      onClick: () => history.push("/comunidade")
+      text: 'Comunidade',
+      onClick: () => history.push('/comunidade'),
     },
     {
-      text: "Contato",
-      onClick: () => history.push("/contato")
+      text: 'Contato',
+      onClick: () => history.push('/contato'),
     },
     {
-      text: "Contribua",
-      onClick: () => history.push("/contribua")
+      text: 'Contribua',
+      onClick: () => history.push('/contribua'),
     },
     {
-      text: "Missão",
-      onClick: () => history.push("/missao")
+      text: 'Missão',
+      onClick: () => history.push('/missao'),
     },
   ];
 
@@ -73,7 +84,7 @@ const Drawer = () => {
           </Typography>
         </Toolbar>
       </AppBar>
-       <MUIDrawer
+      <MUIDrawer
         className={classes.drawer}
         variant="permanent"
         classes={{
@@ -84,17 +95,15 @@ const Drawer = () => {
         <div className={classes.toolbar} />
         <Divider />
         <List>
-          {
-            itemsList.map((item) => {
-              const { text, onClick } = item;
+          {itemsList.map((item) => {
+            const { text, onClick } = item;
 
-              return (
-                <ListItem button key={text} onClick={onClick}>
-                  <ListItemText primary={text} />
-                </ListItem>
-              );
-            })
-          }
+            return (
+              <ListItem button key={text} onClick={onClick}>
+                <ListItemText primary={text} />
+              </ListItem>
+            );
+          })}
         </List>
       </MUIDrawer>
     </div>

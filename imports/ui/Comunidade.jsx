@@ -1,5 +1,5 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTracker } from 'meteor/react-meteor-data';
 import { ComunidadesCollection } from '../collections/comunidades';
 
@@ -11,16 +11,16 @@ export const Comunidade = () => {
   return (
     <div>
       <h2>Comunidade</h2>
-      <ul>{comunidades.map(
-        item => (
-            <li key={item._id}>
-              <p>{item.url}</p>
-              {typeof item.icon !== 'string' ? (
-                <FontAwesomeIcon icon={item.icon} />
-              ) : null}
-            </li>
-          )
-      )}</ul>
+      <ul>
+        {comunidades.map((item) => (
+          <li key={item._id}>
+            <p>{item.url}</p>
+            {typeof item.icon !== 'string' ? (
+              <FontAwesomeIcon icon={item.icon} />
+            ) : null}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

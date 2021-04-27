@@ -10,8 +10,8 @@ export const Contribua = () => {
   return (
     <div>
       <h2>Contribua</h2>
-      <ul>{contribua.map(
-        item => {
+      <ul>
+        {contribua.map((item) => {
           return (
             <li key={item._id}>
               <p>{item.nomeBanco}</p>
@@ -22,9 +22,9 @@ export const Contribua = () => {
               <p>{item.igreja}</p>
               <p>{item.cnpj}</p>
             </li>
-          )
-        }
-      )}</ul>
+          );
+        })}
+      </ul>
     </div>
   );
 };

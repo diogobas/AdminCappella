@@ -10,25 +10,23 @@ export const Agenda = () => {
   return (
     <div>
       <h2>Agenda</h2>
-      <ul>{agendas.map(
-        item => {
+      <ul>
+        {agendas.map((item) => {
           return (
             <li key={item._id}>
               <p>{item.dia}</p>
-              {
-                item.data.map(dt => {
-                  return (
-                    <ul>
-                      <li>{dt.horario}</li>
-                      <li>{dt.atividade}</li>
-                    </ul>
-                  )
-                })
-              }
+              {item.data.map((dt) => {
+                return (
+                  <ul>
+                    <li>{dt.horario}</li>
+                    <li>{dt.atividade}</li>
+                  </ul>
+                );
+              })}
             </li>
-          )
-        }
-      )}</ul>
+          );
+        })}
+      </ul>
     </div>
   );
 };
