@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { PastoralCollection } from '../collections/pastoral';
+import { LinkAovivo } from '../../collections/linkAovivo';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,56 +27,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Pastoral = () => {
+export const AoVivo = () => {
   const classes = useStyles();
   const [id, setId] = useState('');
-  const [titulo, setTitulo] = useState('');
-  const [autor, setAutor] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [initialTitulo, setInitialTitulo] = useState('');
-  const [initialAutor, setInitialAutor] = useState('');
-  const [initialDescricao, setInitialDescricao] = useState('');
+  const [url, setUrl] = useState('');
+  const [initialUrl, setInitialUrl] = useState('');
   const [error, setError] = useState('');
   const [hasChange, setHasChange] = useState(false);
 
-  const pastoral = useTracker(() => {
-    return PastoralCollection.find().fetch();
+  const linkAovivo = useTracker(() => {
+    return LinkAovivo.find().fetch();
   });
 
   const setInitialValues = () => {
-    const { _id, titulo, autor, descricao } = pastoral[0];
+    const { _id, url } = linkAovivo[0];
 
     setId(_id);
-    setTitulo(titulo);
-    setInitialTitulo(titulo);
-    setAutor(autor);
-    setInitialAutor(autor);
-    setDescricao(descricao);
-    setInitialDescricao(descricao);
+    setUrl(url);
+    setInitialUrl(url);
   };
 
   useEffect(() => {
-    if (!titulo && pastoral.length) {
+    if (!url && linkAovivo.length) {
       setInitialValues();
     }
-  }, [pastoral]);
+  }, [linkAovivo]);
 
   useEffect(() => {
-    if (
-      titulo !== initialTitulo ||
-      autor !== initialAutor ||
-      descricao !== initialDescricao
-    ) {
+    if (url !== initialUrl) {
       return setHasChange(true);
     }
 
     setHasChange(false);
-  }, [titulo, autor, descricao]);
+  }, [url]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Meteor.call('pastoral.update', id, titulo, autor, descricao, (error) => {
+    Meteor.call('linkAovivo.update', id, url, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
       } else {
@@ -94,22 +82,9 @@ export const Pastoral = () => {
           <Grid container item xs={12} spacing={3}>
             <TextField
               variant="outlined"
-              label={'Titulo'}
-              value={titulo}
-              onChange={(e) => setTitulo(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'Autor'}
-              value={autor}
-              onChange={(e) => setAutor(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'Pastoral'}
-              multiline
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
+              label={'URL'}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
             />
             <Grid className={classes.containerBotao}>
               <Button
@@ -117,10 +92,7 @@ export const Pastoral = () => {
                 size="large"
                 color="default"
                 classes={{ root: classes.botao }}
-                onClick={() => {
-                  setInitialValues();
-                  setError('');
-                }}
+                onClick={setInitialValues}
                 disabled={!hasChange}
               >
                 Cancelar

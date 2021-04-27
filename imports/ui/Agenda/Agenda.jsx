@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { AgendasCollection } from '../collections/agendas';
+import { AgendasCollection } from '../../collections/agendas';
 
 export const Agenda = () => {
   const agendas = useTracker(() => {

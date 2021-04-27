@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ContribuaCollection } from '../collections/contribua';
+import { ComunidadesCollection } from '../../collections/comunidades';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,76 +27,71 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Contribua = () => {
+export const Comunidade = () => {
   const classes = useStyles();
   const [id, setId] = useState('');
-  const [nomeBanco, setNomeBanco] = useState('');
-  const [banco, setBanco] = useState('');
-  const [agencia, setAgencia] = useState('');
-  const [cc, setCC] = useState('');
-  const [operacao, setOperacao] = useState('');
-  const [igreja, setIgreja] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [initialNomeBanco, setInitialNomeBanco] = useState('');
-  const [initialBanco, setInitialBanco] = useState('');
-  const [initialAgencia, setInitialAgencia] = useState('');
-  const [initialCC, setInitialCC] = useState('');
-  const [initialOperacao, setInitialOperacao] = useState('');
-  const [initialIgreja, setInitialIgreja] = useState('');
-  const [initialCnpj, setInitialCnpj] = useState('');
+  const [facebook, setFacebook] = useState('');
+  const [instagram, setInstagram] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [youtube, setYoutube] = useState('');
+  const [spotify, setSpotify] = useState('');
+  const [site, setSite] = useState('');
+  const [initialFacebook, setInitialFacebook] = useState('');
+  const [initialInstagram, setInitialInstagram] = useState('');
+  const [initialWhatsapp, setInitialWhatsapp] = useState('');
+  const [initialYoutube, setInitialYoutube] = useState('');
+  const [initialSpotify, setInitialSpotify] = useState('');
+  const [initialSite, setInitialSite] = useState('');
   const [error, setError] = useState('');
   const [hasChange, setHasChange] = useState(false);
 
-  const contribua = useTracker(() => {
-    return ContribuaCollection.find().fetch();
+  const comunidades = useTracker(() => {
+    return ComunidadesCollection.find().fetch();
   });
 
   const setInitialValues = () => {
-    const { _id, nomeBanco, banco, agencia, cc, operacao, igreja, cnpj } = contribua[0];
+    const { _id, facebook, instagram, whatsapp, youtube, spotify, site } = comunidades[0];
 
     setId(_id);
-    setNomeBanco(nomeBanco);
-    setInitialNomeBanco(nomeBanco);
-    setBanco(banco);
-    setInitialBanco(banco);
-    setAgencia(agencia);
-    setInitialAgencia(agencia);
-    setCC(cc);
-    setInitialCC(cc);
-    setOperacao(operacao);
-    setInitialOperacao(operacao);
-    setIgreja(igreja);
-    setInitialIgreja(igreja);
-    setCnpj(cnpj);
-    setInitialCnpj(cnpj);
+    setFacebook(facebook);
+    setInitialFacebook(facebook);
+    setInstagram(instagram);
+    setInitialInstagram(instagram);
+    setWhatsapp(whatsapp);
+    setInitialWhatsapp(whatsapp);
+    setYoutube(youtube);
+    setInitialYoutube(youtube);
+    setSpotify(spotify);
+    setInitialSpotify(spotify);
+    setSite(site);
+    setInitialSite(site);
   };
 
   useEffect(() => {
-    if (!nomeBanco && contribua.length) {
+    if (!facebook && comunidades.length) {
       setInitialValues();
     }
-  }, [contribua]);
+  }, [comunidades]);
 
   useEffect(() => {
     if (
-      nomeBanco !== initialNomeBanco ||
-      banco !== initialBanco ||
-      agencia !== initialAgencia ||
-      cc !== initialCC ||
-      operacao !== initialOperacao ||
-      igreja !== initialIgreja ||
-      cnpj !== initialCnpj
+      facebook !== initialFacebook ||
+      instagram !== initialInstagram ||
+      whatsapp !== initialWhatsapp ||
+      youtube !== initialYoutube ||
+      spotify !== initialSpotify ||
+      site !== initialSite
     ) {
       return setHasChange(true);
     }
 
     setHasChange(false);
-  }, [nomeBanco, banco, agencia, cc, operacao, igreja, cnpj]);
+  }, [facebook, instagram, whatsapp, youtube, spotify, site]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Meteor.call('contribua.update', id, nomeBanco, banco, agencia, cc, operacao, igreja, cnpj, (error) => {
+    Meteor.call('comunidades.update', id, facebook, instagram, whatsapp, youtube, spotify, site, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
       } else {
@@ -114,50 +109,39 @@ export const Contribua = () => {
           <Grid container item xs={12} spacing={3}>
             <TextField
               variant="outlined"
-              label={'Nome do Banco'}
-              value={nomeBanco}
-              onChange={(e) => setNomeBanco(e.target.value)}
+              label={'Facebook'}
+              value={facebook}
+              onChange={(e) => setFacebook(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Número do Banco'}
-              value={banco}
-              onChange={(e) => setBanco(e.target.value)}
+              label={'Instagram'}
+              value={instagram}
+              onChange={(e) => setInstagram(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Agência'}
-              multiline
-              value={agencia}
-              onChange={(e) => setAgencia(e.target.value)}
+              label={'WhatsApp'}
+              value={whatsapp}
+              onChange={(e) => setWhatsapp(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Conta Corrente'}
-              multiline
-              value={cc}
-              onChange={(e) => setCC(e.target.value)}
+              label={'YouTube'}
+              value={youtube}
+              onChange={(e) => setYoutube(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Operação'}
-              multiline
-              value={operacao}
-              onChange={(e) => setOperacao(e.target.value)}
+              label={'Spotify'}
+              value={spotify}
+              onChange={(e) => setSpotify(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Igreja'}
-              multiline
-              value={igreja}
-              onChange={(e) => setIgreja(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'CNPJ'}
-              multiline
-              value={cnpj}
-              onChange={(e) => setCnpj(e.target.value)}
+              label={'Site'}
+              value={site}
+              onChange={(e) => setSite(e.target.value)}
             />
             <Grid className={classes.containerBotao}>
               <Button

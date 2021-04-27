@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTracker } from 'meteor/react-meteor-data';
-import { PastoralCollection } from '../collections/pastoral';
+import { MissaoCollection } from '../../collections/missao';
 import {
   makeStyles,
   Paper,
@@ -18,10 +18,10 @@ const useStyles = makeStyles({
   },
 });
 
-export const PastoralList = () => {
+export const MissaoList = () => {
   const classes = useStyles();
-  const pastoral = useTracker(() => {
-    return PastoralCollection.find().fetch();
+  const missao = useTracker(() => {
+    return MissaoCollection.find().fetch();
   });
 
   return (
@@ -29,17 +29,19 @@ export const PastoralList = () => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Titulo</TableCell>
-            <TableCell align="right">Autor</TableCell>
+            <TableCell>Nome</TableCell>
+            <TableCell align="right">Missão</TableCell>
+            <TableCell align="right">Contato</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {pastoral.map((past) => (
-            <TableRow key={past.titulo}>
+          {missao.map((mis) => (
+            <TableRow key={mis.nome}>
               <TableCell component="th" scope="row">
-                {past.titulo}
+                {mis.nome}
               </TableCell>
-              <TableCell align="right">{past.autor}</TableCell>
+              <TableCell align="right">{mis.missao}</TableCell>
+              <TableCell align="right">{mis.contato}</TableCell>
             </TableRow>
           ))}
         </TableBody>

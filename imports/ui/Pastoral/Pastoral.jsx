@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ComunidadesCollection } from '../collections/comunidades';
+import { PastoralCollection } from '../../collections/pastoral';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,71 +27,56 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Comunidade = () => {
+export const Pastoral = () => {
   const classes = useStyles();
   const [id, setId] = useState('');
-  const [facebook, setFacebook] = useState('');
-  const [instagram, setInstagram] = useState('');
-  const [whatsapp, setWhatsapp] = useState('');
-  const [youtube, setYoutube] = useState('');
-  const [spotify, setSpotify] = useState('');
-  const [site, setSite] = useState('');
-  const [initialFacebook, setInitialFacebook] = useState('');
-  const [initialInstagram, setInitialInstagram] = useState('');
-  const [initialWhatsapp, setInitialWhatsapp] = useState('');
-  const [initialYoutube, setInitialYoutube] = useState('');
-  const [initialSpotify, setInitialSpotify] = useState('');
-  const [initialSite, setInitialSite] = useState('');
+  const [titulo, setTitulo] = useState('');
+  const [autor, setAutor] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [initialTitulo, setInitialTitulo] = useState('');
+  const [initialAutor, setInitialAutor] = useState('');
+  const [initialDescricao, setInitialDescricao] = useState('');
   const [error, setError] = useState('');
   const [hasChange, setHasChange] = useState(false);
 
-  const comunidades = useTracker(() => {
-    return ComunidadesCollection.find().fetch();
+  const pastoral = useTracker(() => {
+    return PastoralCollection.find().fetch();
   });
 
   const setInitialValues = () => {
-    const { _id, facebook, instagram, whatsapp, youtube, spotify, site } = comunidades[0];
+    const { _id, titulo, autor, descricao } = pastoral[0];
 
     setId(_id);
-    setFacebook(facebook);
-    setInitialFacebook(facebook);
-    setInstagram(instagram);
-    setInitialInstagram(instagram);
-    setWhatsapp(whatsapp);
-    setInitialWhatsapp(whatsapp);
-    setYoutube(youtube);
-    setInitialYoutube(youtube);
-    setSpotify(spotify);
-    setInitialSpotify(spotify);
-    setSite(site);
-    setInitialSite(site);
+    setTitulo(titulo);
+    setInitialTitulo(titulo);
+    setAutor(autor);
+    setInitialAutor(autor);
+    setDescricao(descricao);
+    setInitialDescricao(descricao);
   };
 
   useEffect(() => {
-    if (!facebook && comunidades.length) {
+    if (!titulo && pastoral.length) {
       setInitialValues();
     }
-  }, [comunidades]);
+  }, [pastoral]);
 
   useEffect(() => {
     if (
-      facebook !== initialFacebook ||
-      instagram !== initialInstagram ||
-      whatsapp !== initialWhatsapp ||
-      youtube !== initialYoutube ||
-      spotify !== initialSpotify ||
-      site !== initialSite
+      titulo !== initialTitulo ||
+      autor !== initialAutor ||
+      descricao !== initialDescricao
     ) {
       return setHasChange(true);
     }
 
     setHasChange(false);
-  }, [facebook, instagram, whatsapp, youtube, spotify, site]);
+  }, [titulo, autor, descricao]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    Meteor.call('comunidades.update', id, facebook, instagram, whatsapp, youtube, spotify, site, (error) => {
+    Meteor.call('pastoral.update', id, titulo, autor, descricao, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
       } else {
@@ -109,39 +94,22 @@ export const Comunidade = () => {
           <Grid container item xs={12} spacing={3}>
             <TextField
               variant="outlined"
-              label={'Facebook'}
-              value={facebook}
-              onChange={(e) => setFacebook(e.target.value)}
+              label={'Titulo'}
+              value={titulo}
+              onChange={(e) => setTitulo(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'Instagram'}
-              value={instagram}
-              onChange={(e) => setInstagram(e.target.value)}
+              label={'Autor'}
+              value={autor}
+              onChange={(e) => setAutor(e.target.value)}
             />
             <TextField
               variant="outlined"
-              label={'WhatsApp'}
-              value={whatsapp}
-              onChange={(e) => setWhatsapp(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'YouTube'}
-              value={youtube}
-              onChange={(e) => setYoutube(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'Spotify'}
-              value={spotify}
-              onChange={(e) => setSpotify(e.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label={'Site'}
-              value={site}
-              onChange={(e) => setSite(e.target.value)}
+              label={'Pastoral'}
+              multiline
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
             />
             <Grid className={classes.containerBotao}>
               <Button

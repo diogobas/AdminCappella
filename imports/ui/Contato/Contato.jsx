@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
-import { ContatoCollection } from '../collections/contato';
+import { ContatoCollection } from '../../collections/contato';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({

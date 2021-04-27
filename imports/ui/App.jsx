@@ -2,13 +2,13 @@ import React from 'react';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Drawer from './Drawer';
-import { Pastoral } from './Pastoral';
-import { Agenda } from './Agenda';
-import { AoVivo } from './AoVivo';
-import { Comunidade } from './Comunidade';
-import { Contribua } from './Contribua';
-import { Contato } from './Contato';
-import { Missao } from './Missao';
+import { Pastoral } from './Pastoral/Pastoral';
+import { Agenda } from './Agenda/Agenda';
+import { AoVivo } from './AoVivo/AoVivo';
+import { Comunidade } from './Comunidade/Comunidade';
+import { Contribua } from './Contribua/Contribua';
+import { Contato } from './Contato/Contato';
+import { Missao } from './Missao/Missao';
 
 const useStyles = makeStyles(() => ({
   container: {
