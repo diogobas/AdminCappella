@@ -12,7 +12,7 @@ export const AoVivo = () => {
       <h2>Ao Vivo</h2>
       <ul>{linkAovivo.map(
         item => <li key={item._id}>
-          <a href={item.url} target="_blank">{item.url}</a>
+          <a href={item.url} target="_blank" rel="noreferrer">{item.url}</a>
         </li>
       )}</ul>
     </div>

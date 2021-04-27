@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { useTracker } from 'meteor/react-meteor-data';
+import { PastoralCollection } from '../collections/pastoral';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
-import { PastoralList } from './PastoralList';
 
 const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
@@ -20,30 +21,64 @@ const useStyles = makeStyles((theme) => ({
   botao: {
     margin: theme.spacing(0.5)
   },
+  containerBotao: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
 }));
 
 export const Pastoral = () => {
   const classes = useStyles();
+  const [id, setId] = useState('');
   const [titulo, setTitulo] = useState('');
   const [autor, setAutor] = useState('');
   const [descricao, setDescricao] = useState('');
+  const [initialTitulo, setInitialTitulo] = useState('');
+  const [initialAutor, setInitialAutor] = useState('');
+  const [initialDescricao, setInitialDescricao] = useState('');
   const [error, setError] = useState('');
+  const [hasChange, setHasChange] = useState(false);
+
+  const pastoral = useTracker(() => {
+    return PastoralCollection.find().fetch();
+  });
+
 
   const setInitialValues = () => {
-    setTitulo('');
-    setAutor('');
-    setDescricao('');
+    const {_id, titulo, autor, descricao} = pastoral[0];
+
+    setId(_id);
+    setTitulo(titulo);
+    setInitialTitulo(titulo);
+    setAutor(autor);
+    setInitialAutor(autor);
+    setDescricao(descricao);
+    setInitialDescricao(descricao);
   }
+
+  useEffect(() => {
+    if (!titulo && pastoral.length) {
+      setInitialValues();
+    }
+  }, [pastoral]);
+
+  useEffect(() => {
+    if (titulo !== initialTitulo || autor !== initialAutor || descricao !== initialDescricao) {
+      return setHasChange(true);
+    }
+
+    setHasChange(false);
+  }, [titulo, autor, descricao])
 
   const handleSubmit = e => {
     e.preventDefault()
     
-    Meteor.call('pastoral.insert', titulo, autor, descricao, (error) => {
+    Meteor.call('pastoral.update', id, titulo, autor, descricao, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
       } else {
         setError('');
-        setInitialValues();
+        setHasChange(false);
       }
     });
   }
@@ -73,13 +108,14 @@ export const Pastoral = () => {
                 value={descricao}
                 onChange={e => setDescricao(e.target.value)}
               />
-              <div>
+              <Grid className={classes.containerBotao}>
                 <Button 
                   variant="contained"
                   size="large"
                   color="default"
                   classes={{ root: classes.botao}}
                   onClick={setInitialValues}
+                  disabled={!hasChange}
                 >
                   Cancelar
                 </Button>
@@ -90,14 +126,14 @@ export const Pastoral = () => {
                   color="primary"
                   type="submit"
                   classes={{ root: classes.botao}}
+                  disabled={!hasChange}
                 >
                   Salvar
                 </Button>
-              </div>
+              </Grid>
           </Grid>
         </Grid>
       </form>
-      <PastoralList />
     </main>
   );
 };

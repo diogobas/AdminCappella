@@ -3,11 +3,11 @@ import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 
 Meteor.methods({
-    'pastoral.insert': (titulo, autor, descricao) => {
+    'pastoral.update': (id, titulo, autor, descricao) => {
         check(titulo, Match.Where(titulo => titulo.length));
         check(descricao, Match.Where(descricao => descricao.length));
 
-        PastoralCollection.insert({titulo, autor, descricao, createdAt: new Date()});
+        PastoralCollection.update({ _id: id }, {titulo, autor, descricao, updatedAt: new Date()});
     }
 })
 
