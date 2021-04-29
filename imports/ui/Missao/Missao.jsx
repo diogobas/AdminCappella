@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 export const Missao = () => {
   const classes = useStyles();
+  const [id, setId] = useState();
   const [nome, setNome] = useState('');
   const [missao, setMissao] = useState('');
   const [contato, setContato] = useState('');
@@ -54,15 +55,35 @@ export const Missao = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+
+    if (id) {
+      Meteor.call('missao.update', id, nome, missao, contato, (error) => {
+        if (error) {
+          setError('Preencha todos os campos obrigatórios!');
+        } else {
+          setError('');
+          setId();
+          setInitialValues();
+        }
+      });
+    } else {
+      Meteor.call('missao.insert', nome, missao, contato, (error) => {
+        if (error) {
+          setError('Preencha todos os campos obrigatórios!');
+        } else {
+          setError('');
+          setInitialValues();
+        }
+      });
+    }
     
-    Meteor.call('missao.insert', nome, missao, contato, (error) => {
-      if (error) {
-        setError('Preencha todos os campos obrigatórios!');
-      } else {
-        setError('');
-        setInitialValues();
-      }
-    });
+  }
+
+  const handleUpdate = mis => {
+    setId(mis._id);
+    setNome(mis.nome);
+    setMissao(mis.missao);
+    setContato(mis.contato);
   }
 
   return (
@@ -119,7 +140,7 @@ export const Missao = () => {
           </Grid>
         </Grid>
       </form>
-      <MissaoList />
+      <MissaoList onUpdate={handleUpdate} />
     </main>
   );
 };

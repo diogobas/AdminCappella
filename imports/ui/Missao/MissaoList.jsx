@@ -1,7 +1,10 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import { MissaoCollection } from '../../collections/missao';
 import {
+  Button,
   makeStyles,
   Paper,
   Table,
@@ -18,11 +21,17 @@ const useStyles = makeStyles({
   },
 });
 
-export const MissaoList = () => {
+export const MissaoList = ({ onUpdate }) => {
   const classes = useStyles();
   const missao = useTracker(() => {
     return MissaoCollection.find().fetch();
   });
+
+  const handleDelete = (e, id) => {
+    e.stopPropagation();
+
+    Meteor.call('missao.delete', id);
+  }
 
   return (
     <TableContainer component={Paper}>
@@ -32,16 +41,25 @@ export const MissaoList = () => {
             <TableCell>Nome</TableCell>
             <TableCell align="right">Missão</TableCell>
             <TableCell align="right">Contato</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {missao.map((mis) => (
-            <TableRow key={mis.nome}>
+            <TableRow key={mis.nome} hover onClick={() => onUpdate(mis)}>
               <TableCell component="th" scope="row">
                 {mis.nome}
               </TableCell>
               <TableCell align="right">{mis.missao}</TableCell>
               <TableCell align="right">{mis.contato}</TableCell>
+              <TableCell>
+                <Button
+                  onClick={e => handleDelete(e, mis._id)}
+                  color="secondary"
+                >
+                  Delete
+                </Button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -49,3 +67,7 @@ export const MissaoList = () => {
     </TableContainer>
   );
 };
+
+MissaoList.propTypes = {
+  onUpdate: PropTypes.func.isRequired
+}
