@@ -14,6 +14,16 @@ import {
 } from '@material-ui/core';
 import { Agenda } from './Agenda';
 
+const dias = [
+  'domingo',
+  'segunda',
+  'terça',
+  'quarta',
+  'quinta',
+  'sexta',
+  'sabado',
+];
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -30,10 +40,10 @@ export const AgendaList = () => {
     <div>
       <h2>Agenda</h2>
       <ul>
-        {agendas.map((item) => {
+        {dias.map((dia) => {
           return (
-            <TableContainer component={Paper} key={item._id}>
-              <Typography variant="h4" component="h4">{item.dia}</Typography>
+            <TableContainer component={Paper} key={dia}>
+              <Typography variant="h4" component="h4">{dia}</Typography>
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
@@ -42,17 +52,23 @@ export const AgendaList = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {item.data.map((dt) => (
-                    <TableRow key={dt.horario}>
-                      <TableCell component="th" scope="row">
-                        {dt.horario}
-                      </TableCell>
-                      <TableCell align="right">{dt.atividade}</TableCell>
-                    </TableRow>
-                  ))}
+                  {
+                    agendas.map((item) => {
+                      if (item.dia === dia) {
+                        return item.data.map((dt) => (
+                          <TableRow key={dt.horario}>
+                            <TableCell component="th" scope="row">
+                              {dt.horario}
+                            </TableCell>
+                            <TableCell align="right">{dt.atividade}</TableCell>
+                          </TableRow>
+                        ))
+                      }
+                    })
+                  }
                 </TableBody>
               </Table>
-              <Agenda />
+              <Agenda dia={dia} />
             </TableContainer>
           );
         })}

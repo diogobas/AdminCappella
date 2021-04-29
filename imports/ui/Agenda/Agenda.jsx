@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Agenda = () => {
+export const Agenda = ({dia}) => {
   const classes = useStyles();
   const [horario, setHorario] = useState('');
   const [atividade, setAtividade] = useState('');
@@ -51,7 +52,7 @@ export const Agenda = () => {
   const handleSubmit = e => {
     e.preventDefault()
     
-    Meteor.call('agenda.insert', horario, atividade, (error) => {
+    Meteor.call('agenda.insert', dia, horario, atividade, (error) => {
       if (error) {
         setError('Preencha todos os campos obrigatórios!');
       } else {
@@ -69,13 +70,13 @@ export const Agenda = () => {
           <Grid container item xs={12} spacing={3}>
               <TextField
                 variant="outlined"
-                label={"Nome"}
+                label={"Horario"}
                 value={horario}
                 onChange={e => setHorario(e.target.value)}
               />
               <TextField
                 variant="outlined"
-                label={"Missão"}
+                label={"Atividade"}
                 value={atividade}
                 onChange={e => setAtividade(e.target.value)}
               />
@@ -111,3 +112,7 @@ export const Agenda = () => {
     </main>
   );
 };
+
+Agenda.propTypes = {
+  dia: PropTypes.string.isRequired
+}
