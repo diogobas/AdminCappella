@@ -1,7 +1,9 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { AgendasCollection } from '../../collections/agendas';
 import {
+  Button,
   makeStyles,
   Paper,
   Table,
@@ -36,6 +38,12 @@ export const AgendaList = () => {
     return AgendasCollection.find().fetch();
   });
 
+  const handleDelete = (e, id) => {
+    e.stopPropagation();
+
+    Meteor.call('agenda.delete', id);
+  }
+
   return (
     <div>
       <h2>Agenda</h2>
@@ -49,6 +57,7 @@ export const AgendaList = () => {
                   <TableRow>
                     <TableCell>Horario</TableCell>
                     <TableCell align="right">Atividade</TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -61,6 +70,14 @@ export const AgendaList = () => {
                               {dt.horario}
                             </TableCell>
                             <TableCell align="right">{dt.atividade}</TableCell>
+                            <TableCell>
+                              <Button
+                                onClick={e => handleDelete(e, item._id)}
+                                color="secondary"
+                              >
+                                Delete
+                              </Button>
+                            </TableCell>
                           </TableRow>
                         ))
                       }
