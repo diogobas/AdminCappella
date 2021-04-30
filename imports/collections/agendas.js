@@ -15,22 +15,19 @@ Meteor.methods({
 
         AgendasCollection.insert({ dia, data, createdAt: new Date() });
     },
-    'agenda.update': (id, dia, horario, atividade) => {
+    'agenda.update': (id, dia, data) => {
         check(dia, Match.Where(dia => dia.length));
-        check(horario, Match.Where(horario => horario.length));
-        check(atividade, Match.Where(atividade => atividade.length));
 
-        const data = [{
-            atividade,
-            horario,
-        }];
+        data.map((dt) => {
+            check(dt.horario, Match.Where(horario => horario.length));
+            check(dt.atividade, Match.Where(atividade => atividade.length));
+        });
 
         AgendasCollection.update(
             { _id: id },
             { dia, data, updatedAt: new Date() },
         );
     },
-    'agenda.delete': (id) => AgendasCollection.remove({ _id: id }),
 })
 
 export const AgendasCollection = new Mongo.Collection('agendas');
