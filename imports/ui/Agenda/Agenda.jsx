@@ -22,20 +22,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
   },
-  root: {
-    '& .MuiFormControl-root': {
-        width: '100%',
-        margin: theme.spacing(1)
-    }
-  },
-  botao: {
-    margin: theme.spacing(0.5)
-  },
-  containerBotao: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  list: {
+  dia: {
     width: "100%",
     marginTop: theme.spacing(5),
   },
@@ -59,7 +46,7 @@ export const Agenda = () => {
                   {
                     (item.dia === dia) && (
                       <>
-                        <Typography className={classes.list} variant="h4" component="h4">{dia}</Typography>
+                        <Typography className={classes.dia} variant="h4" component="h4">{dia}</Typography>
                         <AgendaList key={item._id} id={item._id} dia={dia} atividades={item.data} />
                       </>
                     )

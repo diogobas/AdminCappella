@@ -45,4 +45,16 @@ export function inserirCalendario() {
       },
     ],
   });
+  insertAgenda({
+    dia: 'quinta',
+    data: [],
+  });
+  insertAgenda({
+    dia: 'sexta',
+    data: [],
+  });
+  insertAgenda({
+    dia: 'sabado',
+    data: [],
+  });
 }

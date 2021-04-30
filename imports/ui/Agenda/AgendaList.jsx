@@ -16,7 +16,7 @@ import RevertIcon from "@material-ui/icons/NotInterestedOutlined";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/AddCircleOutline";
 import { TableContainer } from "@material-ui/core";
-import { CustomTableCell } from './CustomTableCell';
+import { CustomTableCell } from "../utils/CustomTableCell";
 
 const useStyles = makeStyles(() => ({
   table: {
