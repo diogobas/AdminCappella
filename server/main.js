@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base'
 import { AgendasCollection } from '/imports/collections/agendas';
 import { LinkAovivo } from '../imports/collections/linkAovivo';
 import { inserirCalendario } from './agenda';
@@ -15,6 +16,15 @@ import { PastoralCollection } from '../imports/collections/pastoral';
 import { inserirPastoral } from './pastoral';
 
 Meteor.startup(() => {
+  Accounts.createUser({
+    username: "mosaico", 
+    email: "ipmosaico@gmail.com", 
+    password: "mosaicochurch2019", 
+    profile: { 
+      igreja: "mosaico"
+    }
+  });
+ 
   if (AgendasCollection.find().count() === 0) {
     inserirCalendario();
   }
