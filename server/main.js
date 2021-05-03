@@ -16,14 +16,16 @@ import { PastoralCollection } from '../imports/collections/pastoral';
 import { inserirPastoral } from './pastoral';
 
 Meteor.startup(() => {
-  Accounts.createUser({
-    username: "mosaico", 
-    email: "ipmosaico@gmail.com", 
-    password: "mosaicochurch2019", 
-    profile: { 
-      igreja: "mosaico"
-    }
-  });
+  if (!Accounts.findUserByUsername('mosaico')) {
+    Accounts.createUser({
+      username: "mosaico", 
+      email: "ipmosaico@gmail.com", 
+      password: "mosaicochurch2019", 
+      profile: { 
+        igreja: "Igreja Presbiteriana Mosaico"
+      }
+    });
+  }
  
   if (AgendasCollection.find().count() === 0) {
     inserirCalendario();

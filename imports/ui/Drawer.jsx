@@ -12,6 +12,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useHistory, withRouter } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
 
 const drawerWidth = 240;
 
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 const Drawer = () => {
   const classes = useStyles();
   const history = useHistory();
+  const userName = Meteor.user().profile.igreja;
 
   const itemsList = [
     {
@@ -72,6 +74,13 @@ const Drawer = () => {
       text: 'Missão',
       onClick: () => history.push('/missao'),
     },
+    {
+      text: 'Logout',
+      onClick: () => {
+        Meteor.logout();
+        history.push('/#');
+      }
+    },
   ];
 
   return (
@@ -80,7 +89,7 @@ const Drawer = () => {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.toolbarProps}>
           <Typography variant="h6" noWrap>
-            {history.location.pathname.slice(1).toUpperCase()}
+            {history.location.pathname.slice(1).toUpperCase() || userName}
           </Typography>
         </Toolbar>
       </AppBar>
