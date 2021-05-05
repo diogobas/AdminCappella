@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { ContribuaCollection } from '../../collections/contribua';
 import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
+import { ButtonsControl } from '../components/ButtonsControl';
 
 const useStyles = makeStyles((theme) => ({
   // necessary for content to be below app bar
@@ -17,13 +18,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       margin: theme.spacing(1),
     },
-  },
-  botao: {
-    margin: theme.spacing(0.5),
-  },
-  containerBotao: {
-    display: 'flex',
-    flexDirection: 'row',
   },
 }));
 
@@ -159,32 +153,14 @@ export const Contribua = () => {
               value={cnpj}
               onChange={(e) => setCnpj(e.target.value)}
             />
-            <Grid className={classes.containerBotao}>
-              <Button
-                variant="contained"
-                size="large"
-                color="default"
-                classes={{ root: classes.botao }}
-                onClick={() => {
-                  setInitialValues();
-                  setError('');
-                }}
-                disabled={!hasChange}
-              >
-                Cancelar
-              </Button>
-              <div className="text-danger">{error}</div>
-              <Button
-                variant="contained"
-                size="large"
-                color="primary"
-                type="submit"
-                classes={{ root: classes.botao }}
-                disabled={!hasChange}
-              >
-                Salvar
-              </Button>
-            </Grid>
+            <ButtonsControl
+              hasChange={hasChange} 
+              error={error} 
+              onCancel={() => {
+                setInitialValues();
+                setError('');
+              }} 
+            />
           </Grid>
         </Grid>
       </form>
