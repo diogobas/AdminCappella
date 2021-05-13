@@ -40,7 +40,7 @@ export const Contato = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const contato = useTracker(() => {
-    return ContatoCollection.find().fetch();
+    return ContatoCollection.find({ idIgreja: 1 }).fetch();
   });
 
   const setInitialValues = () => {

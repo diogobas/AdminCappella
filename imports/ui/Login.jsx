@@ -2,10 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 
-// const useStyles = makeStyles((theme) => ({
-
-// }));
-
 export default function Login({ setToken }) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -13,8 +9,11 @@ export default function Login({ setToken }) {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    Meteor.loginWithPassword(username, password, (error) => { 
-      return console.log(error);
+    Meteor.loginWithPassword(username, password, (err) => {
+      if (err) {
+        setToken(null);
+        console.log(err);
+      }
     });
 
     setToken(Meteor.userId());
@@ -22,14 +21,14 @@ export default function Login({ setToken }) {
 
   return(
     <div className="login-wrapper">
-      <h1>Please Log In</h1>
+      <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          <p>Username</p>
+          <p>Usuário</p>
           <input type="text" onChange={e => setUserName(e.target.value)}/>
         </label>
         <label>
-          <p>Password</p>
+          <p>Senha</p>
           <input type="password" onChange={e => setPassword(e.target.value)}/>
         </label>
         <div>

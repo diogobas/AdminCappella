@@ -42,7 +42,7 @@ export const Contribua = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const contribua = useTracker(() => {
-    return ContribuaCollection.find().fetch();
+    return ContribuaCollection.find({ idIgreja: 1 }).fetch();
   });
 
   const setInitialValues = () => {

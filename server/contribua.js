@@ -8,6 +8,7 @@ function insertContribua({
   operacao,
   igreja,
   cnpj,
+  idIgreja
 }) {
   ContribuaCollection.insert({
     nomeBanco,
@@ -17,11 +18,12 @@ function insertContribua({
     operacao,
     igreja,
     cnpj,
+    idIgreja,
     createdAt: new Date(),
   });
 }
 
-export function inserirContribua() {
+export function inserirContribua(idIgreja) {
   insertContribua({
     nomeBanco: 'CAIXA ECONOMICA FEDERAL',
     banco: 'Banco 104',
@@ -30,5 +32,6 @@ export function inserirContribua() {
     operacao: 'Operação 003',
     igreja: 'igreja presbiteriana mosaico',
     cnpj: '22.289.452/0001-78',
+    idIgreja
   });
 }

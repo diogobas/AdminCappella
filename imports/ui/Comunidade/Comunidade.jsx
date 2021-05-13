@@ -40,7 +40,7 @@ export const Comunidade = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const comunidades = useTracker(() => {
-    return ComunidadesCollection.find().fetch();
+    return ComunidadesCollection.find({ idIgreja: 1 }).fetch();
   });
 
   const setInitialValues = () => {

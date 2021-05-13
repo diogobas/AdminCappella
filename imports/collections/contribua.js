@@ -5,6 +5,8 @@ import { check, Match } from 'meteor/check';
 
 Meteor.methods({
   'contribua.update': (id, nomeBanco, banco, agencia, cc, operacao, igreja, cnpj) => {
+    const idIgreja = Meteor.user().profile.idIgreja;
+
     check(
       nomeBanco,
       Match.Where((nomeBanco) => nomeBanco.length),
@@ -36,7 +38,7 @@ Meteor.methods({
 
     ContribuaCollection.update(
       { _id: id },
-      { nomeBanco, banco, agencia, cc, operacao, igreja, cnpj, updatedAt: new Date() },
+      { nomeBanco, banco, agencia, cc, operacao, igreja, cnpj, idIgreja, updatedAt: new Date() },
     );
   },
 });

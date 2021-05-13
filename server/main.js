@@ -22,30 +22,31 @@ Meteor.startup(() => {
       email: "ipmosaico@gmail.com", 
       password: "mosaicochurch2019", 
       profile: { 
-        igreja: "Igreja Presbiteriana Mosaico"
+        igreja: "Igreja Presbiteriana Mosaico",
+        idIgreja: 1,
       }
     });
   }
  
   if (AgendasCollection.find().count() === 0) {
-    inserirCalendario();
+    inserirCalendario(1);
   }
   if (LinkAovivo.find().count() === 0) {
-    inserirAoVivo();
+    inserirAoVivo(1);
   }
   if (ComunidadesCollection.find().count() === 0) {
-    inserirComunidade();
+    inserirComunidade(1);
   }
   if (ContatoCollection.find().count() === 0) {
-    inserirContato();
+    inserirContato(1);
   }
   if (ContribuaCollection.find().count() === 0) {
-    inserirContribua();
+    inserirContribua(1);
   }
   if (MissaoCollection.find().count() === 0) {
-    inserirMissao();
+    inserirMissao(1);
   }
   if (PastoralCollection.find().count() === 0) {
-    inserirPastoral();
+    inserirPastoral(1);
   }
 });

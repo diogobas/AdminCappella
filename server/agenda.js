@@ -1,10 +1,10 @@
 import { AgendasCollection } from '/imports/collections/agendas';
 
-function insertAgenda({ dia, data }) {
-  AgendasCollection.insert({ dia, data, createdAt: new Date() });
+function insertAgenda({ dia, data, idIgreja }) {
+  AgendasCollection.insert({ dia, data, idIgreja, createdAt: new Date() });
 }
 
-export function inserirCalendario() {
+export function inserirCalendario(idIgreja) {
   insertAgenda({
     dia: 'domingo',
     data: [
@@ -17,6 +17,7 @@ export function inserirCalendario() {
         horario: '19:00',
       },
     ],
+    idIgreja
   });
   insertAgenda({
     dia: 'segunda',
@@ -26,6 +27,7 @@ export function inserirCalendario() {
         horario: '20:00',
       },
     ],
+    idIgreja
   });
   insertAgenda({
     dia: 'terça',
@@ -35,6 +37,7 @@ export function inserirCalendario() {
         horario: '20:00',
       },
     ],
+    idIgreja
   });
   insertAgenda({
     dia: 'quarta',
@@ -44,17 +47,21 @@ export function inserirCalendario() {
         horario: '20:00',
       },
     ],
+    idIgreja
   });
   insertAgenda({
     dia: 'quinta',
     data: [],
+    idIgreja
   });
   insertAgenda({
     dia: 'sexta',
     data: [],
+    idIgreja
   });
   insertAgenda({
     dia: 'sabado',
     data: [],
+    idIgreja
   });
 }

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export const Agenda = () => {
   const classes = useStyles();
   const agendas = useTracker(() => {
-    return AgendasCollection.find().fetch();
+    return AgendasCollection.find({ idIgreja: 1 }).fetch();
   });
 
   return (

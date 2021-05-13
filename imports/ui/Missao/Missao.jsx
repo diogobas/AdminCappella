@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 export const Missao = () => {
   const classes = useStyles();
   const missao = useTracker(() => {
-    return MissaoCollection.find().fetch();
+    return MissaoCollection.find({ idIgreja: 1 }).fetch();
   });
 
   return (

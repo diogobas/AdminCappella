@@ -1,10 +1,10 @@
 import { ComunidadesCollection } from '../imports/collections/comunidades';
 
-function insertComunidade({ facebook, instagram, whatsapp, youtube, spotify, site }) {
-  ComunidadesCollection.insert({ facebook, instagram, whatsapp, youtube, spotify, site, createdAt: new Date() });
+function insertComunidade({ facebook, instagram, whatsapp, youtube, spotify, site, idIgreja }) {
+  ComunidadesCollection.insert({ facebook, instagram, whatsapp, youtube, spotify, site, idIgreja, createdAt: new Date() });
 }
 
-export function inserirComunidade() {
+export function inserirComunidade(idIgreja) {
   insertComunidade({
     facebook: 'https://www.facebook.com/igrejapresbiterianamosaico',
     instagram: 'https://www.instagram.com/igrejapresbiterianamosaico/',
@@ -14,5 +14,6 @@ export function inserirComunidade() {
     spotify:
       'https://open.spotify.com/show/25Ew0LHUkCnAu3nbcXawdw?si=0pxQ6kg9S0K-aYAUmff4yQ',
     site: 'https://igreja-presbiteriana-mosaico.negocio.site/',
+    idIgreja
   });
 }

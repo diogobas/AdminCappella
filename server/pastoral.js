@@ -1,15 +1,16 @@
 import { PastoralCollection } from '../imports/collections/pastoral';
 
-function insertPastoral({ titulo, autor, descricao }) {
+function insertPastoral({ titulo, autor, descricao, idIgreja }) {
   PastoralCollection.insert({
     titulo,
     autor,
     descricao,
+    idIgreja,
     createdAt: new Date(),
   });
 }
 
-export function inserirPastoral() {
+export function inserirPastoral(idIgreja) {
   insertPastoral({
     titulo: 'BEM VINDO!',
     autor: 'Felipe Lobo Andrade',
@@ -22,5 +23,6 @@ export function inserirPastoral() {
       A Palavra de Deus em Romanos 14.19 diz: “Por isso, esforcemo-nos em promover tudo quanto conduz à paz e à edificação mútua.” É justamente nesse propósito que nosso aplicativo foi criado, para ser canal de edificação, de paz, de comunhão e de evangelização.
 
       Que Deus te abençoe!`,
+    idIgreja
   });
 }

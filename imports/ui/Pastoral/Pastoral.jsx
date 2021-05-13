@@ -34,7 +34,9 @@ export const Pastoral = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const pastoral = useTracker(() => {
-    return PastoralCollection.find().fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return PastoralCollection.find({ idIgreja }).fetch();
   });
 
   const setInitialValues = () => {

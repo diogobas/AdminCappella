@@ -4,6 +4,8 @@ import { check, Match } from 'meteor/check';
 
 Meteor.methods({
   'contato.update': (id, endereco, localizacao, telefone, email, missao, pastor) => {
+    const idIgreja = Meteor.user().profile.idIgreja;
+
     check(
       endereco,
       Match.Where((titulo) => titulo.length),
@@ -27,7 +29,7 @@ Meteor.methods({
 
     ContatoCollection.update(
       { _id: id },
-      { endereco, localizacao, telefone, email, missao, pastor, updatedAt: new Date() },
+      { endereco, localizacao, telefone, email, missao, pastor, idIgreja, updatedAt: new Date() },
     );
   },
 });

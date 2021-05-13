@@ -30,7 +30,7 @@ export const AoVivo = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const linkAovivo = useTracker(() => {
-    return LinkAovivo.find().fetch();
+    return LinkAovivo.find({ idIgreja: 1 }).fetch();
   });
 
   const setInitialValues = () => {

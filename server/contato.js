@@ -8,6 +8,7 @@ function insertContato({
   email,
   missao,
   pastor,
+  idIgreja
 }) {
   ContatoCollection.insert({
     logo,
@@ -17,11 +18,12 @@ function insertContato({
     email,
     missao,
     pastor,
+    idIgreja,
     createdAt: new Date(),
   });
 }
 
-export function inserirContato() {
+export function inserirContato(idIgreja) {
   insertContato({
     logo: '../assets/images/mosaico.png',
     endereco: 'Rua T-53, 480 Setor Bueno Goiânia/GO, CEP 74810-210',
@@ -31,5 +33,6 @@ export function inserirContato() {
     missao:
       'A Igreja Presbiteriana Mosaico existe para acolher pessoas e formar discípulos de Cristo através de relacionamentos saudáveis e uma pregação bíblica contemporânea no bairro Setor Bueno, na cidade de Goiânia e no mundo.',
     pastor: 'Rev. Felipe Lobo Andrade',
+    idIgreja,
   });
 }
