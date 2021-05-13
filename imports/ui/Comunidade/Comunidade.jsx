@@ -40,7 +40,9 @@ export const Comunidade = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const comunidades = useTracker(() => {
-    return ComunidadesCollection.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return ComunidadesCollection.find({ idIgreja }).fetch();
   });
 
   const setInitialValues = () => {

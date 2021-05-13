@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { makeStyles } from '@material-ui/core';
 import { MissaoList } from './MissaoList';
@@ -17,7 +18,9 @@ const useStyles = makeStyles((theme) => ({
 export const Missao = () => {
   const classes = useStyles();
   const missao = useTracker(() => {
-    return MissaoCollection.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return MissaoCollection.find({ idIgreja }).fetch();
   });
 
   return (

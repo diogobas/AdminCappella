@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { ContribuaCollection } from '../../collections/contribua';
-import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
+import { Grid, makeStyles, TextField } from '@material-ui/core';
 import { ButtonsControl } from '../components/ButtonsControl';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,7 +42,9 @@ export const Contribua = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const contribua = useTracker(() => {
-    return ContribuaCollection.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return ContribuaCollection.find({ idIgreja }).fetch();
   });
 
   const setInitialValues = () => {

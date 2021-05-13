@@ -23,7 +23,7 @@ function insertContribua({
   });
 }
 
-export function inserirContribua(idIgreja) {
+export function inserirContribuaMosaico(idIgreja) {
   insertContribua({
     nomeBanco: 'CAIXA ECONOMICA FEDERAL',
     banco: 'Banco 104',
@@ -32,6 +32,19 @@ export function inserirContribua(idIgreja) {
     operacao: 'Operação 003',
     igreja: 'igreja presbiteriana mosaico',
     cnpj: '22.289.452/0001-78',
+    idIgreja
+  });
+}
+
+export function inserirContribuaCentral(idIgreja) {
+  insertContribua({
+    nomeBanco: 'LOREM IPSUM',
+    banco: 'Banco 123',
+    agencia: 'Agência 1234',
+    cc: 'C/C 1234-1',
+    operacao: 'Operação 123',
+    igreja: 'igreja presbiteriana de itapetininga',
+    cnpj: '12.345.678/0001-90',
     idIgreja
   });
 }

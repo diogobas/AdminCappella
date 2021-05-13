@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { makeStyles, Typography } from '@material-ui/core';
 import { AgendasCollection } from '../../collections/agendas';
@@ -31,7 +32,9 @@ const useStyles = makeStyles((theme) => ({
 export const Agenda = () => {
   const classes = useStyles();
   const agendas = useTracker(() => {
-    return AgendasCollection.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return AgendasCollection.find({ idIgreja }).fetch();
   });
 
   return (

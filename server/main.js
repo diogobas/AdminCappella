@@ -2,18 +2,18 @@ import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
 import { AgendasCollection } from '/imports/collections/agendas';
 import { LinkAovivo } from '../imports/collections/linkAovivo';
-import { inserirCalendario } from './agenda';
-import { inserirAoVivo } from './aovivo';
+import { inserirCalendarioMosaico, inserirCalendarioCentral } from './agenda';
+import { inserirAoVivoMosaico, inserirAoVivoCentral } from './aovivo';
 import { ComunidadesCollection } from '../imports/collections/comunidades';
-import { inserirComunidade } from './comunidade';
+import { inserirComunidadeMosaico, inserirComunidadeCentral } from './comunidade';
 import { ContatoCollection } from '../imports/collections/contato';
-import { inserirContato } from './contato';
+import { inserirContatoMosaico, inserirContatoCentral } from './contato';
 import { ContribuaCollection } from '../imports/collections/contribua';
-import { inserirContribua } from './contribua';
+import { inserirContribuaMosaico, inserirContribuaCentral } from './contribua';
 import { MissaoCollection } from '../imports/collections/missao';
-import { inserirMissao } from './missao';
+import { inserirMissaoMosaico, inserirMissaoCentral } from './missao';
 import { PastoralCollection } from '../imports/collections/pastoral';
-import { inserirPastoral } from './pastoral';
+import { inserirPastoralMosaico, inserirPastoralCentral } from './pastoral';
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername('mosaico')) {
@@ -27,26 +27,45 @@ Meteor.startup(() => {
       }
     });
   }
+
+  if (!Accounts.findUserByUsername('central')) {
+    Accounts.createUser({
+      username: "central", 
+      email: "ipbitapecentral@gmail.com", 
+      password: "ipbitapecentralchurch2021", 
+      profile: { 
+        igreja: "Igreja Presbiteriana de Itapetininga",
+        idIgreja: 2,
+      }
+    });
+  }
  
   if (AgendasCollection.find().count() === 0) {
-    inserirCalendario(1);
+    inserirCalendarioMosaico(1);
+    inserirCalendarioCentral(2);
   }
   if (LinkAovivo.find().count() === 0) {
-    inserirAoVivo(1);
+    inserirAoVivoMosaico(1);
+    inserirAoVivoCentral(2);
   }
   if (ComunidadesCollection.find().count() === 0) {
-    inserirComunidade(1);
+    inserirComunidadeMosaico(1);
+    inserirComunidadeCentral(2);
   }
   if (ContatoCollection.find().count() === 0) {
-    inserirContato(1);
+    inserirContatoMosaico(1);
+    inserirContatoCentral(2);
   }
   if (ContribuaCollection.find().count() === 0) {
-    inserirContribua(1);
+    inserirContribuaMosaico(1);
+    inserirContribuaCentral(2);
   }
   if (MissaoCollection.find().count() === 0) {
-    inserirMissao(1);
+    inserirMissaoMosaico(1);
+    inserirMissaoCentral(2);
   }
   if (PastoralCollection.find().count() === 0) {
-    inserirPastoral(1);
+    inserirPastoralMosaico(1);
+    inserirPastoralCentral(2);
   }
 });

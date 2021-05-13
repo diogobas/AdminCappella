@@ -30,7 +30,9 @@ export const AoVivo = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const linkAovivo = useTracker(() => {
-    return LinkAovivo.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return LinkAovivo.find({ idIgreja }).fetch();
   });
 
   const setInitialValues = () => {

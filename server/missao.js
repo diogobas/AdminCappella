@@ -4,7 +4,7 @@ function insertMissao({ nome, missao, contato, idIgreja }) {
   MissaoCollection.insert({ nome, missao, contato, idIgreja, createdAt: new Date() });
 }
 
-export function inserirMissao(idIgreja) {
+export function inserirMissaoMosaico(idIgreja) {
   insertMissao({
     nome: 'Pastor Roberto',
     missao: 'Missão Cidade de Deus / Carvalhos de Justiça',
@@ -53,6 +53,27 @@ export function inserirMissao(idIgreja) {
   insertMissao({
     nome: 'Paulo Ricardo',
     contato: '+1 (314) 793 7770',
+    idIgreja
+  });
+}
+
+export function inserirMissaoCentral(idIgreja) {
+  insertMissao({
+    nome: 'CAMINHO DO SUL',
+    missao: 'Nosso trabalho de fé',
+    contato: 'https://itapecentral.com/caminho-do-sul',
+    idIgreja
+  });
+  insertMissao({
+    nome: 'ASSOCIAÇÃO FIDELIS SIQUEIRA CAMPOS',
+    missao: 'Nosso trabalho de amor',
+    contato: 'https://itapecentral.com/trabalho-central',
+    idIgreja
+  });
+  insertMissao({
+    nome: 'ESCOLA PRESBITERIANA DE ITAPETININGA',
+    missao: 'Nosso trabalho de esperança',
+    contato: 'https://itapecentral.com/trabalho-central',
     idIgreja
   });
 }

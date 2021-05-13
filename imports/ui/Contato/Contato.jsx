@@ -40,7 +40,9 @@ export const Contato = () => {
   const [hasChange, setHasChange] = useState(false);
 
   const contato = useTracker(() => {
-    return ContatoCollection.find({ idIgreja: 1 }).fetch();
+    const idIgreja = Meteor.user().profile.idIgreja;
+
+    return ContatoCollection.find({ idIgreja }).fetch();
   });
 
   const setInitialValues = () => {
