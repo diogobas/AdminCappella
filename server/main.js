@@ -42,30 +42,50 @@ Meteor.startup(() => {
  
   if (AgendasCollection.find().count() === 0) {
     inserirCalendarioMosaico(1);
+  }
+  if (AgendasCollection.find({idIgreja: 2}).count() === 0) {
     inserirCalendarioCentral(2);
   }
+
   if (LinkAovivo.find().count() === 0) {
     inserirAoVivoMosaico(1);
+  }
+  if (LinkAovivo.find({idIgreja: 2}).count() === 0) {
     inserirAoVivoCentral(2);
   }
+
   if (ComunidadesCollection.find().count() === 0) {
     inserirComunidadeMosaico(1);
+  }
+  if (ComunidadesCollection.find({idIgreja: 2}).count() === 0) {
     inserirComunidadeCentral(2);
   }
+
   if (ContatoCollection.find().count() === 0) {
     inserirContatoMosaico(1);
+  }
+  if (ContatoCollection.find({idIgreja: 2}).count() === 0) {
     inserirContatoCentral(2);
   }
+  
   if (ContribuaCollection.find().count() === 0) {
     inserirContribuaMosaico(1);
+  }
+  if (ContribuaCollection.find({idIgreja: 2}).count() === 0) {
     inserirContribuaCentral(2);
   }
+
   if (MissaoCollection.find().count() === 0) {
     inserirMissaoMosaico(1);
+  }
+  if (MissaoCollection.find({idIgreja: 2}).count() === 0) {
     inserirMissaoCentral(2);
   }
+
   if (PastoralCollection.find().count() === 0) {
     inserirPastoralMosaico(1);
+  }
+  if (PastoralCollection.find({idIgreja: 2}).count() === 0) {
     inserirPastoralCentral(2);
   }
 });
