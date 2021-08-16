@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { PastoralCollection } from '../../collections/pastoral';
-import { Grid, makeStyles, TextField } from '@material-ui/core';
+import { Button, Grid, makeStyles, TextField } from '@material-ui/core';
 import { ButtonsControl } from '../components/ButtonsControl';
 
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +80,17 @@ export const Pastoral = () => {
     });
   };
 
+  const sendNotification = (e) => {
+    e.preventDefault();
+    Meteor.call('pastoral.notificar', titulo, autor, (error) => {
+      if (error) {
+        setError(`Não foi possível notificar. ${JSON.stringify(error)}`);
+      } else {
+        setError('');
+      }
+    })
+  }
+
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
@@ -105,14 +116,24 @@ export const Pastoral = () => {
               value={descricao}
               onChange={(e) => setDescricao(e.target.value)}
             />
-            <ButtonsControl 
-              hasChange={hasChange} 
-              error={error} 
+            <ButtonsControl
+              hasChange={hasChange}
+              error={error}
               onCancel={() => {
                 setInitialValues();
                 setError('');
-              }} 
-            />
+              }}
+            >
+              <Button
+                variant="contained"
+                size="large"
+                color="secondary"
+                classes={{ root: classes.botao }}
+                onClick={sendNotification}
+              >
+                Notificar
+              </Button>
+            </ButtonsControl>
           </Grid>
         </Grid>
       </form>

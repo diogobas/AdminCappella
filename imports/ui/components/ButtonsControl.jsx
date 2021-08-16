@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ButtonsControl = ({hasChange, error, onCancel}) => {
+export const ButtonsControl = ({hasChange, error, onCancel, children}) => {
   const classes = useStyles();
 
   return (
@@ -38,6 +38,7 @@ export const ButtonsControl = ({hasChange, error, onCancel}) => {
       >
         Salvar
       </Button>
+      {children}
     </Grid>
   );
 };
@@ -46,4 +47,5 @@ ButtonsControl.propTypes = {
   hasChange: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
   onCancel: PropTypes.func.isRequired,
+  children: PropTypes.object
 };
