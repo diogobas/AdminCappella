@@ -1,0 +1,10 @@
+{
+  "push": {
+    "oneSignalRestApiKey": "<YOUR_KEY_HERE>"
+  },
+  "public": {
+    "push": {
+      "oneSignalAppId": "<YOUR_APP_ID_HERE>"
+    }
+  }
+}
