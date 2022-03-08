@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core';
+import React, {useState} from 'react';
+import {HashRouter as Router, Route, Switch} from 'react-router-dom';
+import {makeStyles} from '@material-ui/core';
 import Drawer from './Drawer';
-import { Pastoral } from './Pastoral/Pastoral';
-import { Agenda } from './Agenda/Agenda';
-import { AoVivo } from './AoVivo/AoVivo';
-import { Comunidade } from './Comunidade/Comunidade';
-import { Contribua } from './Contribua/Contribua';
-import { Contato } from './Contato/Contato';
-import { Missao } from './Missao/Missao';
+import {Pastoral} from './Pastoral/Pastoral';
+import {Agenda} from './Agenda/Agenda';
+import {AoVivo} from './AoVivo/AoVivo';
+import {Comunidade} from './Comunidade/Comunidade';
+import {Contribua} from './Contribua/Contribua';
+import {Contato} from './Contato/Contato';
+import {Missao} from './Missao/Missao';
+import {Evento} from './Evento/Evento';
 import Login from './Login';
 
 const useStyles = makeStyles(() => ({
@@ -21,8 +22,8 @@ export const App = () => {
   const classes = useStyles();
   const [token, setToken] = useState();
 
-  if(!token) {
-    return <Login setToken={setToken} />
+  if (!token) {
+    return <Login setToken={setToken} />;
   }
 
   return (
@@ -37,6 +38,7 @@ export const App = () => {
           <Route from="/comunidade" component={Comunidade} />
           <Route from="/contribua" component={Contribua} />
           <Route from="/missao" component={Missao} />
+          <Route from="/evento" component={Evento} />
         </Switch>
       </Router>
     </div>

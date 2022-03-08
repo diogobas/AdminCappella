@@ -75,6 +75,10 @@ const Drawer = () => {
       onClick: () => history.push('/missao'),
     },
     {
+      text: 'Evento',
+      onClick: () => history.push('/evento'),
+    },
+    {
       text: 'Logout',
       onClick: () => {
         Meteor.logout();

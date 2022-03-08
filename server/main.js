@@ -1,19 +1,24 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base'
-import { AgendasCollection } from '/imports/collections/agendas';
-import { LinkAovivo } from '../imports/collections/linkAovivo';
+
 import { inserirCalendario } from './agenda';
 import { inserirAoVivo } from './aovivo';
-import { ComunidadesCollection } from '../imports/collections/comunidades';
-import { inserirComunidade } from './comunidade';
-import { ContatoCollection } from '../imports/collections/contato';
-import { inserirContato } from './contato';
-import { ContribuaCollection } from '../imports/collections/contribua';
-import { inserirContribua } from './contribua';
-import { MissaoCollection } from '../imports/collections/missao';
-import { inserirMissao } from './missao';
-import { PastoralCollection } from '../imports/collections/pastoral';
 import { inserirPastoral } from './pastoral';
+import { inserirEvento } from './evento';
+import { inserirMissao } from './missao';
+import { inserirContribua } from './contribua';
+import { inserirContato } from './contato';
+import { inserirComunidade } from './comunidade';
+
+import { ComunidadesCollection } from '../imports/collections/comunidades';
+import { ContatoCollection } from '../imports/collections/contato';
+import { AgendasCollection } from '/imports/collections/agendas';
+import { LinkAovivo } from '../imports/collections/linkAovivo';
+import { ContribuaCollection } from '../imports/collections/contribua';
+import { MissaoCollection } from '../imports/collections/missao';
+import { PastoralCollection } from '../imports/collections/pastoral';
+import { EventoCollection } from '../imports/collections/evento';
+
 
 Meteor.startup(() => {
   if (!Accounts.findUserByUsername('mosaico')) {
@@ -48,5 +53,8 @@ Meteor.startup(() => {
   }
   if (PastoralCollection.find().count() === 0) {
     inserirPastoral(1);
+  }
+  if (EventoCollection.find().count() === 0) {
+    inserirEvento(1);
   }
 });
