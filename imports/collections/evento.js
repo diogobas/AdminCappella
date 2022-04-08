@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
 
 Meteor.methods({
-  'evento.insert': (titulo, sobre, dataInicial, dataFim,valor, local, endereco, imagemURL, url) => {
+  'evento.insert': (titulo, sobre, dataInicial, dataFim, valor, local, endereco, imagemURL, url) => {
     const idIgreja = Meteor.user().profile.idIgreja;
 
     check(titulo, Match.Where(titulo => titulo.length));

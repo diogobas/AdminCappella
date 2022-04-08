@@ -31,22 +31,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-const createData = (titulo, sobre, dataInicial, dataFim, valor, local, endereco, imagemURL, url, isEditMode) => ({
-  titulo, 
-  sobre, 
-  dataInicial, 
-  dataFim,
-  valor, 
-  local, 
-  endereco, 
-  imagemURL, 
-  url, 
+const createData = (id, titulo, dataInicial, local, isEditMode) => ({
+  id,
+  titulo,
+  dataInicial,
+  local,
   isEditMode
 });
 
 export const EventoList = ({eventos}) => {
   const classes = useStyles();
-  const [rows, setRows] = useState(eventos.map(e => createData(e._id, e.titulo, e.sobre, e.dataInicial, e.dataFim, e.valor, e.local, e.endereco, e.imagemURL, e.url, false)));
+  const [rows, setRows] = useState(eventos.map(m => createData(m._id, m.titulo, m.dataInicial, m.local, false)));
   const [creating, setCreating] = useState(false);
   const [previous, setPrevious] = useState({});
   const [error, setError] = useState('');
@@ -61,10 +56,10 @@ export const EventoList = ({eventos}) => {
   const onUpdate = (e, id) => {
     e.preventDefault();
 
-    const { titulo, sobre, dataInicial, dataFim, valor, local, endereco, imagemURL, url } = rows.find(row => row.id === id);
+    const { titulo, dataInicial, local } = rows.find(row => row.id === id);
 
     if (id) {
-      Meteor.call('evento.update', id, titulo, sobre, dataInicial, dataFim, valor, local, endereco, imagemURL, url, (error) => {
+      Meteor.call('missao.update', id, titulo, dataInicial, local, (error) => {
         if (error) {
           setError('Preencha todos os campos obrigatórios!');
         } else {
@@ -73,7 +68,7 @@ export const EventoList = ({eventos}) => {
         }
       });
     } else {
-      Meteor.call('evento.insert', titulo, sobre, dataInicial, dataFim, valor, local, endereco, imagemURL, url, (error) => {
+      Meteor.call('missao.insert', titulo, dataInicial, local, (error) => {
         if (error) {
           setError('Preencha todos os campos obrigatórios!');
         } else {
@@ -90,7 +85,7 @@ export const EventoList = ({eventos}) => {
     const newRows = rows
       .filter(row => row.id !== id)
     
-    Meteor.call('evento.delete', id);
+    Meteor.call('missao.delete', id);
     setRows(newRows);
   }
 
@@ -144,14 +139,8 @@ export const EventoList = ({eventos}) => {
           <TableRow>
             <TableCell align="left" />
             <TableCell align="left">Titulo</TableCell>
-            <TableCell align="left">Sobre</TableCell>
             <TableCell align="left">Data Inicial</TableCell>
-            <TableCell align="left">Data Fim</TableCell>
-            <TableCell align="left">Valor</TableCell>
             <TableCell align="left">Local</TableCell>
-            <TableCell align="left">Endereco</TableCell>
-            <TableCell align="left">ImagemURL</TableCell>
-            <TableCell align="left">URL</TableCell>
             <TableCell align="left" />
           </TableRow>
         </TableHead>
@@ -164,14 +153,14 @@ export const EventoList = ({eventos}) => {
                     <IconButton
                       aria-label="done"
                       onClick={e => onUpdate(e, row.id)}
-                      disabled={!row.titulo.length}
+                      disabled={!row.titulo.length && !row.dataInicial.length && !row.local.length}
                     >
                       <DoneIcon />
                     </IconButton>
                     <IconButton
                       aria-label="revert"
                       onClick={() => onRevert(row.id)}
-                      disabled={!row.titulo.length}
+                      disabled={!row.titulo.length && !row.dataInicial.length && !row.local.length}
                     >
                       <RevertIcon />
                     </IconButton>
@@ -187,19 +176,13 @@ export const EventoList = ({eventos}) => {
                 )}
               </TableCell>
               <CustomTableCell {...{ row, name: "titulo", onChange }} />
-              <CustomTableCell {...{ row, name: "sobre", onChange }} />
               <CustomTableCell {...{ row, name: "dataInicial", onChange }} />
-              <CustomTableCell {...{ row, name: "dataFim", onChange }} />
-              <CustomTableCell {...{ row, name: "valor", onChange }} />
               <CustomTableCell {...{ row, name: "local", onChange }} />
-              <CustomTableCell {...{ row, name: "endereco", onChange }} />
-              <CustomTableCell {...{ row, name: "imagemURL", onChange }} />
-              <CustomTableCell {...{ row, name: "url", onChange }} />
               <TableCell className={classes.selectTableCell}>
                 <IconButton
                     aria-label="delete"
                     onClick={e => onDelete(e, row.id)}
-                    disabled={!row.titulo.length}
+                    disabled={!row.titulo.length && !row.dataInicial.length && !row.local.length}
                   >
                     <DeleteIcon />
                 </IconButton>
