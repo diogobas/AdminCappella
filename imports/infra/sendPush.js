@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import request from 'request';
 
-const ONE_SIGNAL_REST_API_KEY = Meteor.settings.push?.oneSignalRestApiKey;
-const ONE_SIGNAL_APP_ID = Meteor.settings.public.push?.oneSignalAppId;
+const ONE_SIGNAL_REST_API_KEY = 'ONE_SIGNAL_REST_API_KEY' || Meteor.settings.push?.oneSignalRestApiKey;
+const ONE_SIGNAL_APP_ID = 'ONE_SIGNAL_APP_ID' || Meteor.settings.public.push?.oneSignalAppId;
 
 export const sendPush = ({ heading, content, data = {} }) => {
   const body = {

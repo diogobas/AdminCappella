@@ -126,7 +126,7 @@ export const Pastoral = () => {
                 setError('');
               }}
             >
-              <Button
+{/*              <Button
                 variant="contained"
                 size="large"
                 color="secondary"
@@ -134,7 +134,7 @@ export const Pastoral = () => {
                 onClick={sendNotification}
               >
                 Notificar
-              </Button>
+              </Button>*/}
             </ButtonsControl>
           </Grid>
         </Grid>
